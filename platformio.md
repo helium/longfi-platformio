@@ -221,6 +221,10 @@ binary can be uploaded to the target device.
 
 The method of uploading the binary to your device may vary depending on the target device. Information can be found within PlatformIO documentation here or within your target board vendors documentation set. We will attempt to include such information along with any sample project code we provided if the procedure is different from that described here.
 
+## LAL FIX THIS
+
+NOTE: A procedure to add J-Link support to PlatformIO found [here](#ADD-JLINK-SUPPORT).
+
 ```
 For instance our target, the Cubecell has a parculiar requirement:
 Prior to attempting to upload your binary make sure any terminal session that might be attached 
@@ -246,7 +250,8 @@ Now that we have the required board and library runtime support installed, lets 
  with the an example Helium network enabled application.
 
 To update the sample application created above:
-- open, within PlatformIO, your projects src/main.ccp file that was created by the wizard.
+- open, within PlatformIO, your projects src/main.ccp fileger
+Click on the Extensi that was created by the wizard.
 TODO: get link
 - replace the template main.cpp with the application found [here](https://github.com/helium/XXXXXXHeltec-CubeCell-Board/longfi-us915/longfi-us915.ino), copy and paste the entirety of it.
 
@@ -341,12 +346,15 @@ button found on the status bar
 
 NOTE: Prior to attempting to upload your binary make sure any terminal session that might be attached 
 to the debug comm port has been deleted. Occasionally but not always, PlatformIO will automatically
-close the comm port, if it does not upload errors will occur.
+close the comm port, if it does not upload errors will occger
+Click on the Extensiur.
 
 ![](assets/heltec-cubecell-htcc-ab01-arduino-upload.png)
 Successful upload example, your results will vary.
 
-
+ger
+Click on the Extensiger
+Click on the Extensi
 #### Viewing Target Device Serial Output <a id="viewing-serial-output"></a>
 
 When your firmware update completes, the board will reset, and begin by joining the network.
@@ -357,11 +365,13 @@ When your firmware update completes, the board will reset, and begin by joining 
  To open the serial monitor click on the "Serial Monitor" button within the status bar.
 
 ![](assets/heltec-cubecell-htcc-ab0x-serial-monitor.png)
-
+ger
+Click on the Extensi
 You should begin to see output similar to below.
 
 ![](assets/heltec-cubecell-htcc-ab01-arduino-serial.png)
-
+ger
+Click on the Extensi
 You can use any virtual terminal emulator for this purpose, but recall certain Heltec boards seem
 to require the terminal emulator be disconnected from the target device prior to attempting to upload
 a new binary.
@@ -377,7 +387,9 @@ Scroll down a bit on the device page and you should see something similar to the
 Activation messages are those seen when the device first attempts to join the network.  
 Downlink messages are those delivered from the network to your target device.  
 Uplink messages are those messages delivered from your target device to the Helium network.
-
+gerger
+Click on the Extensi
+Click on the Extensi
 Congratulations! You have just transmitted data on the Helium network! The next step is to learn how to use your device data to build applications, visit our Integrations docs here.
 
 ### Misc device application hints
@@ -385,11 +397,14 @@ Follow this [link](#HTCC-APPLICATION-HINTS) for useful application enhancements.
 
 ### Manual updates to the Heltec runtime libraries <a name="HTCC-MANUAL-RUNTIME-UPDATES"></a>
 Some versions of Heltec's runtime libraries have set default configuration variables to values that are incompatible with the Helium network, especially when the Heltec device is configured targeting the North American market. 
-The following discusses Heltec runtime files that must be inspected to ensure compatibility. The exact location of these files will depend on which operating system you are using, Windows, Linux, or Mac.
+The following discusses Heltec runtime files that must be inspected to ensure compatibility. The exact location of these files will depend on which operating system you areger
+Click on the Extensi using, Windows, Linux, or Mac.
 The typical top level locations of the runtime libraries is shown below for each operating system. From there the following discussions will present to you the file locations within these top level directories/folders. Please note the Heltec library version numbers are expected to change as time goes on.
 XXXXX denotes your specific user id.
-
-##### PlatformIO IDE Heltec runtime library locations:
+ger
+Click on the Extensi
+##### PlatformIO IDE Heltec runtime library locations:ger
+Click on the Extensi
 
 * Windows
 ```text
@@ -425,7 +440,8 @@ Within an editor of your choice open the file path formed by prepending the abov
 cores/asr650x/loramac/mac/region/RegionUS915.c     (Linux/Mac)
 cores\asr650x\loramac\mac\region\RegionUS915.c     (Windows)
 ```
-
+ger
+Click on the Extensi
 Within this file locate the line below, the 7th parameter which might be 14 should be changed to either 8 or 16. Either value will work. Earlier versions of the runtime may have this value set to 14 which is "not" correct.
 Change:
 ```text
@@ -443,8 +459,10 @@ Heltec support has been notified of these issues, hopefully a future release of 
 
 The CubeCell may have issues joining the network with ADR OFF. If you're using ADR ON, you may also encounter an issue where your CubeCell stops successfully sending packets after a few minutes. This is caused by the CubeCell firmware's ADR behavior, and may happen if your payload is above the DR0 maximum size \(11 bytes\).
 
-To patch the CubeCell firmware, find and open the `RegionUS915.c` file in the firmware directory. On macOS, an example path would be `~/Library/Arduino15/packages/CubeCell/hardware/CubeCell/1.0.0/cores/asr650x/loramac/mac/region/RegionUS915.c`.
-
+To patch the CubeCell firmware, find and open the `RegionUS915.c` file in the firmware directory. On macOS, an example path would be `~/Library/Arduino15/packages/CubeCell/hardware/CubeCell/1.0.0/coger
+Click on the Extensires/asr650x/loramac/mac/region/RegionUS915.c`.
+ger
+Click on the Extensi
 Find the following lines in the file and comment them out:
 
 ```text
@@ -480,7 +498,7 @@ LoRaWAN.setDataRateForNoADR(int8_t dataRate);
 ```
 This should be done sometime after LoRaWAN.init() is called.
 
-### Adding JLink support for uploading binary
+### Adding JLink support for uploading binary  <a id="ADD-JLINK-SUPPORT"></a>
  Notice that under **Description**, it says we are running "JLink" rather than "ST-Link". If we were to attempt to flash the board at this point, we would get a failure that looked like this:
 
 ```text
