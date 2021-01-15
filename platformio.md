@@ -93,7 +93,7 @@ Setting up the VSCode/PlatformIO IDE environment while not complex does require 
 Using the VSCode instructions found [here](https://code.visualstudio.com/) download and install Microsoft's Visual Studio Code.
 PlatformIO IDE is built on top of VSCode an extension. Once the VSCode is installed:
 1. Open VSCode Extension Manager
-2. Click on the Extensions icon on the left side of the main view. ![](assets/heltec-cubecell-htcc-ab0x-platformio-exten_icon.png)
+2. Click on the Extensions icon on the left side of the main view.
 3. Within the Extensions Marketplace search for official PlatformIO IDE extension
 4. Install PlatformIO IDE. \([https://marketplace.visualstudio.com/items?itemName=platformio.platformio-ide](https://marketplace.visualstudio.com/items?itemName=platformio.platformio-ide)\)
 
@@ -475,3 +475,51 @@ use to alter the current LoRaWAN data rate.
 LoRaWAN.setDataRateForNoADR(int8_t dataRate);
 ```
 This should be done sometime after LoRaWAN.init() is called.
+
+### Adding JLink support for uploading binary
+ Notice that under **Description**, it says we are running "JLink" rather than "ST-Link". If we were to attempt to flash the board at this point, we would get a failure that looked like this:
+
+```text
+Configuring upload protocol...
+AVAILABLE: blackmagic, jlink, mbed, stlink
+CURRENT: upload_protocol = stlink
+Uploading .pio\build\disco_l072cz_lrwan1\firmware.elf
+xPack OpenOCD, 64-bit Open On-Chip Debugger 0.10.0+dev (2019-07-17-11:28)
+Licensed under GNU GPL v2
+For bug reports, read
+        http://openocd.org/doc/doxygen/bugs.html
+debug_level: 1
+
+srst_only separate srst_nogate srst_open_drain connect_deassert_srst
+
+Error: open failed
+in procedure 'program'
+** OpenOCD init failed **
+shutdown command invoked
+
+*** [upload] Error 1
+===================================================================================== [FAILED] Took 16.63 seconds =====================================================================================
+The terminal process terminated with exit code: 1
+
+```
+
+What happened here? Well, we have this board set up to use a `SEGGER JTAG` interface rather than the `ST-Link` interface that is integrated into the Discovery board. There are a number of advantages of this approach, and I would _highly_ suggest doing this. It will make your development iteration process much faster.
+
+Luckily, `SEGGER` has provided a method to \(non-destructively\) replace the ST-Link on our board with a JTAG interface.
+
+![](assets/heltec-cubecell-htcc-ab0x-jlink-convert.png)
+
+[Head here](https://www.segger.com/products/debug-probes/j-link/models/other-j-links/st-link-on-board/) to walk through the simple process. 
+
+We then need to add one additional line to our `platformio.ini` file to let PlatformIO know that we will be using a JTAG interface to our board \(written as `jlink` in your file\):
+
+![](assets/heltec-cubecell-htcc-ab0x-config-ini-jlink.png)
+
+The next time we build and attempt to upload our project, we will be presented with the following Terms of Use:
+
+![](assets/heltec-cubecell-htcc-ab0x-stlink-terms.png)
+
+Accept this agreement, and you should see the following popup:
+
+![](assets/heltec-cubecell-htcc-ab0x-jlink-download.png)
+
