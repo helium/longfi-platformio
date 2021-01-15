@@ -12,10 +12,10 @@
 [PlatformIO ](https://platformio.org/)provides developers with a modern integrated development environment \([Cloud & Desktop IDE](https://docs.platformio.org/en/latest/integration/ide/index.html#ide)\) that works cross-platform to:
 * support many different software development kits \(SDKs\)
 * provide access to various [Frameworks](https://docs.platformio.org/en/latest/frameworks/index.html#frameworks)
-- allow sophisticated debugging \([PIO Unified Debugger](https://docs.platformio.org/en/latest/plus/debugging.html#piodebug)\)
-- enable unit testing \([PIO Unit Testing](https://docs.platformio.org/en/latest/plus/unit-testing.html#unit-testing)\)
-- support automated code analysis \([PIO Check](https://docs.platformio.org/en/latest/plus/pio-check.html#piocheck)\)
-- enable remote management \([PIO Remote](https://docs.platformio.org/en/latest/plus/pio-remote.html#pioremote)\).
+* allow sophisticated debugging \([PIO Unified Debugger](https://docs.platformio.org/en/latest/plus/debugging.html#piodebug)\)
+* enable unit testing \([PIO Unit Testing](https://docs.platformio.org/en/latest/plus/unit-testing.html#unit-testing)\)
+* support automated code analysis \([PIO Check](https://docs.platformio.org/en/latest/plus/pio-check.html#piocheck)\)
+* enable remote management \([PIO Remote](https://docs.platformio.org/en/latest/plus/pio-remote.html#pioremote)\).
 
 It is architected to maximize flexibility and choice by developers, who can use either graphical or command line editors \([PlatformIO Core \(CLI\)](https://docs.platformio.org/en/latest/core/index.html#piocore)\), or both.
 
@@ -24,24 +24,24 @@ If you are used to developing using the Arduino IDE but constantly feel constrai
 
 
 ## Introduction to Guide
-
-:::important 
-
+```
 This guide will walk through installing PlatformIO and deploying a Helium Arduino program on a target device.
-Here, as an example, we will detail the steps required to integrate a specific board type, the [Heltec Cubecell AB0x]((https://heltec.org/proudct_center/lora/cubecell/)).
+Here, as an example, we will detail the steps required to integrate a specific board type, one of the 
+[Heltec Cubecell AB0x](https://heltec.org/proudct_center/lora/cubecell/) family of boards.
 
 However, this guide can be also used to on-board many other types of target devices. In most cases one can just substitute your target device in place of the Cubecell developer board.
 
 If there are extensive differences they can be found within documentation provided for supported target device examples.
 Before we begin, please make sure you've followed the steps from this guide, which goes over some initial setup steps.
+```
 
-:::
 
 ## Objective and Requirements
 
 In this guide, you will learn:
 
 * How to setup your PlatformIO IDE environment
+* How to create. build, upload a simple embedded application
 * How to program a basic application that will send packets over the Helium Network
 * Verify real-time packets sent to the Helium Console via Hotspot that's in range
 
@@ -68,23 +68,24 @@ There is no installation required however one will need to create a user account
 
 #### Attaching the LoRa Antenna <a id="adding-the-antenna"></a>
 
-Your board should have come with a U.FL antenna. All you have to do is attach it to the U.FL port on the developer board. Some versions of the boards
-may have more than one U.FL port, if this is the case generally the LoRa antenna attaches to the port that 
-is on the same side of the board as contains the USB port connector. However, it is best to verify the proper connector with the board
-manufacturer.
+Your board should have come with a U.FL antenna. All you have to do is attach it to the U.FL port on the developer board. The method of attachment varies depending on the target board.
+In the case of our example Heltec Cubecell board, some versions of the board may have more than one U.FL port, if this is the case generally the LoRa antenna attaches to the port that is on the same side of the board as contains the USB port connector.
+In all cases it is best to verify the proper connector with the board manufacturer.
 
 #### Connect Target Board to Development PC<a id="connect-board"></a>
 
-Next, lets connect our board to our computer with a USB 2.0 A-Male to Micro B cable.
+The target boards are typically connected to the host computer via a USB 2.0 A-Male to Micro B cable. Again this may vary depending upon your target board.
 
 
 #### Install Develop Machine Serial Driver
 
 Some operating systems, especially Windows, will require the installation of hardware specific USB device driver code.
-Installation directions can be found on Heltec's website [here](https://heltec-automation-docs.readthedocs.io/en/latest/general/establish_serial_connection.html).
+Most hardware developer board vendors will supply directions on how this can be accomplished.
+
+For our example case installation directions can be found on Heltec's website [here](https://heltec-automation-docs.readthedocs.io/en/latest/general/establish_serial_connection.html).
 
 ## Software Setup <a id="software-setup"></a>
-Setting up the VSCode/PlatformIO IDE environment while not complex does require several steps that are independent of your target device.
+Setting up the VSCode/PlatformIO IDE environment while not complex does require several steps that are independent of your target device. We will walk through this initial setup before trying to integrate Helium network access code into the mix.
 
 
 ### Installing PlatformIO
@@ -92,16 +93,16 @@ Setting up the VSCode/PlatformIO IDE environment while not complex does require 
 Using the VSCode instructions found [here](https://code.visualstudio.com/) download and install Microsoft's Visual Studio Code.
 PlatformIO IDE is built on top of VSCode an extension. Once the VSCode is installed:
 1. Open VSCode Extension Manager
-2. Search for official PlatformIO IDE extension
-3. Install PlatformIO IDE. \([https://marketplace.visualstudio.com/items?itemName=platformio.platformio-ide](https://marketplace.visualstudio.com/items?itemName=platformio.platformio-ide)\)
+2. Click on the Extensions icon on the left side of the main view. ![](assets/image69.png)
+3. Within the Extensions Marketplace search for official PlatformIO IDE extension
+4. Install PlatformIO IDE. \([https://marketplace.visualstudio.com/items?itemName=platformio.platformio-ide](https://marketplace.visualstudio.com/items?itemName=platformio.platformio-ide)\)
 
-![](assets/image69.png)
+![](assets/heltec-cubecell-htcc-ab0x-platformio-exten.png)
 
-It is highly recommended to give the quick-start guide a read. It will help you navigate the new interface. [https://docs.platformio.org/en/latest/integration/ide/vscode.html\#quick-start](https://docs.platformio.org/en/latest/integration/ide/vscode.html#quick-start)
+It is highly recommended to give the quick-start guide a read. It will help you navigate the unfamiliar interface. [https://docs.platformio.org/en/latest/integration/ide/vscode.html\#quick-start](https://docs.platformio.org/en/latest/integration/ide/vscode.html#quick-start)
 
-In this tutorial, as an example we will be using the [Heltec Cubecell AB0x](https://heltec.org/proudct_center/lora/cubecell/). One can substitue your target device as needed.
+In this tutorial, as an example we will be using the [Heltec Cubecell AB0x](https://heltec.org/proudct_center/lora/cubecell/). One can substitue your target device as needed as you progress through this.
 
-![](assets/image17.png)
 
 Once PlatformIO is installed, you should be welcomed to VSCode with the following "PIO Home" screen:
 
@@ -114,9 +115,7 @@ If not already open, the PlatformIO Home view can be opened by clicking on the h
 
 
 ### Creating a New PlatformIO Project
-If during the course of installing VSCode and PlatformIO you have not already built, uploaded and verified
-the operation of a sample application it is best familiarize yourself with the basic use of PlatformIO before adding
-the complexity of Helium network access code to the mix.
+If you have not have not already used PlatformIO to build, upload and verify the operation of a sample application it is best familiarize yourself with the basic use of PlatformIO before adding the complexity of Helium network access code to the mix.
 
 If you are familiar and confident with the steps required you can continue at "Updating the sample with Helium network access code"
 by clicking [here](#ADD-HELIUM-NETWORK-CODE).
@@ -125,7 +124,7 @@ The following steps will walk you through the steps required to:
 - create a template project
 - inspect the default source file, main.cpp as well as the primary project configuration file, platformio.ini
 - build the project and inspect the build log output
-- upload the sample binary toheltec-cubecell-htcc-ab0x-home-button.png) the target development board.
+- upload the sample binary to the target development board.
 - inspect serial output debug information.
 
 Before proceeding with actual code that will connect to the Helium network, create a sample, template project.
@@ -135,30 +134,25 @@ Before proceeding with actual code that will connect to the Helium network, crea
 - Within the Home view click on "New Project".
 
 - At the "Project Wizard" dialog enter a name for your project in the "Name" field.
-- Within the "Board" field select the appropriate target board by entering the name of the manufacturer, in this 
-case Heltec. 
+- Within the "Board" field select the appropriate target board by entering the name of the manufacturer, "Heltec". The PlatformIO auto search feature should present you with a known list of supported boards. For our example we enter "Heltec" and choose the "Heltec CubceCell-GPS (HTCC-AB02S)" from the supplied list.
 
 Note: If your target device is different start to enter the device manufacturer in the "Board" field, PlatformIO will attempt to fill in the entry with those devices that it is aware of. Hopefully your device will be presented in the list. If so, select it.
 
-The PlatformIO auto search feature should present you with a known
-list of Heltec supported boards. For our example we enter "Heltec" and choose
-the "Heltec CubceCell-GPS (HTCC-AB02S)" from the supplied list.
 
 ![](assets/heltec-cubecell-htcc-ab0x-wizard-board.png)
 
 ##### Select framework and project location
-- Select the desired runtime framework from the "Framework" drop down. At present only "Arduino" is supported for the board we have selected.
+- Select the desired runtime framework from the "Framework" drop down. At present only "Arduino" is supported for the board we have selected for our example.
 - For location, if the checkbox is selected the project will be created within the default PlatformIO workspace, which is sufficient for our purposes.
 
-The target devices will support one or more runtime frameworks. Choose what is appropriate for your target.
+Target devices will support one, or possibly more than one, runtime framework. Choose what is appropriate for your target.
 Our example will be using the Arduino Framework, so ensure it is selected and click "Finish".
 
 
 - Click the "Finish" button to create the project. ( You may need to scroll down the wizard window to expose the Finish button)
 
 Note: The time taken to create a project will vary depending on whether or not the selected platform and framework files have
-been previously downloaded.
-When the project has been created it should be shown within the PlatformIO Explorer view typically 
+been previously downloaded. When the project has been created it should be shown within the PlatformIO Explorer view typically 
 found on the left side of the IDE.
 
 
@@ -174,8 +168,8 @@ PlatformIO also adds a required "\#include <Arduino.h\>" statement. This is a im
 ![](assets/heltec-cubecell-htcc-ab0x-main-cpp.png)
 
 #### platformio.ini - project configurations
-Let's take a look at the platformio.ini file in the root of our new project. This is where one defines project configuration definitions.
-In the Arduino world one would do this via the IDE tool bar.
+Let's take a look at the platformio.ini file in the root of our new project. This is where one defines project configuration definitions. In the Arduino world one would do this via the IDE tool bar.
+
 Note: when this file is modified the entire project will be rebuilt when the project is next built or uploaded.
 
 ![](assets/heltec-cubecell-htcc-ab0x-platform-ini.png)
@@ -192,14 +186,13 @@ Now that the template project has been created it's time to build the device app
 
 #### Inspect the build output
 Due to the defines Within platformio.ini, PlatformIO is able to determine the project board and framework dependencies.
- Any missing dependencies are automatically installed at build time, thus this process may be see in the build output.
-  This feature allows us to add libraries into our platformio.ini file, and they will be added in for us at build time.
+Any missing dependencies are automatically installed at build time, thus this process may be see in the build output.
+This feature allows us to add libraries into our platformio.ini file, which will then be downloaded for us, if needed, at build time.
 
 
 The build process results can be found within the "Terminal View" typically found at the bottom of the VSCode window.
 Much like with Arduino, the build output will dump the calculate amount of Ram and Flash memory 
-used by your application. There is also a Problems output view that may help when trying to resolve
-build issues.
+used by your application. 
 
 ![](assets/heltec-cubecell-htcc-ab0x-build-output_1.png)
 
@@ -207,6 +200,8 @@ Start of the build output displaying configuration information.
 
 ![](assets/heltec-cubecell-htcc-ab0x-build-output_2.png)
 Tail end of build log showing Ram and Flash usage.
+There is also a Problems output view that may help when trying to resolve
+build issues.
 
 #### List of attached devices
 
@@ -214,14 +209,20 @@ If, within the PlatformIO Home view, you select the "Devices" icon on the left,
  you will see listed any attached physical devices as well as their associated comm ports:
 
 ![](assets/heltec-cubecell-htcc-ab0x-devices.png)
+The list should reflect your target device.
 
 #### Uploading binary to target device
 Now that the code has built successfully, if a target device is attached to your computer 
 the resulting binary can be uploaded to the target device.
 
+The method of uploading the binary to your device may vary depending on the target device. Information can be found within PlatformIO documentation here or within your target board vendors documentation set. We will attempt to include such information along with any sample project code we provided.
+
+```
+For instance our target, the Cubecell has a parculiar requirement:
 Prior to attempting to upload your binary make sure any terminal session that might be attached 
 to the debug comm port has been deleted. Occasionally but not always, PlatformIO will automatically
 close the comm port. If it does not upload errors will occur.
+```
 
 ![](assets/heltec-cubecell-htcc-ab0x-upload-button.png)
 
