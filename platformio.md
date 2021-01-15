@@ -93,7 +93,7 @@ Setting up the VSCode/PlatformIO IDE environment while not complex does require 
 Using the VSCode instructions found [here](https://code.visualstudio.com/) download and install Microsoft's Visual Studio Code.
 PlatformIO IDE is built on top of VSCode an extension. Once the VSCode is installed:
 1. Open VSCode Extension Manager
-2. Click on the Extensions icon on the left side of the main view. ![](assets/image69.png)
+2. Click on the Extensions icon on the left side of the main view. ![](assets/heltec-cubecell-htcc-ab0x-platformio-exten_icon.png)
 3. Within the Extensions Marketplace search for official PlatformIO IDE extension
 4. Install PlatformIO IDE. \([https://marketplace.visualstudio.com/items?itemName=platformio.platformio-ide](https://marketplace.visualstudio.com/items?itemName=platformio.platformio-ide)\)
 
