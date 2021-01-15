@@ -57,7 +57,7 @@ boards. Subsequent follow on products may work but have not been tested
 ### Software
 PlatformIO is not a standalone IDE, it installs as an extension to Microsoft VSCode.
 The Helium Console is a cloud based device management tool that we will use to enable our device access to the Helium network.
-There is no installation required however one will need to![](assets/heltec-cubecell-htcc-ab0x-home-button.png) create a user account with the Helium Console.
+There is no installation required however one will need to create a user account with the Helium Console.
 
 * [VSCode \(IDE)](https://code.visualstudio.com/)
     * [PlatformIO \(VScode Extension)](https://platformio.org/)
@@ -77,7 +77,7 @@ manufacturer.
 
 Next, lets connect our board to our computer with a USB 2.0 A-Male to Micro B cable.
 
-![](assets/heltec-cubecell-htcc-ab0x-home-button.png)
+
 #### Install Develop Machine Serial Driver
 
 Some operating systems, especially Windows, will require the installation of hardware specific USB device driver code.
@@ -85,24 +85,12 @@ Installation directions can be found on Heltec's website [here](https://heltec-a
 
 ## Software Setup <a id="software-setup"></a>
 Setting up the VSCode/PlatformIO IDE environment while not complex does require several steps that are independent of your target device.
-The required procedures are detailed within the following platformio.org document.
 
-[VSCode/PlatformIO Installation](https://docs.platformio.org/en/latest/integration/ide/vscode.html)
-
-Once PlatformIO is installed, you should be welcomed to VSCode with the following "PIO Home" main screen tab: 
-
-![](assets/heltec-cubecell-htcc-ab0x-platformio-welcome.png)
-
-If not already open, the PlatformIO Home view can be opened by clicking on the house icon within the VScode status bar.
-
-![](assets/heltec-cubecell-htcc-ab0x-home-button.png)
 
 ### Installing PlatformIO
 
-[Download ](https://code.visualstudio.com/)and install Microsoft's Visual Studio Code, PlatformIO IDE is built on top of it as an extension.
-
-{% embed url="https://code.visualstudio.com/\#alt-downloads" %}
-
+Using the VSCode instructions found [here](https://code.visualstudio.com/) download and install Microsoft's Visual Studio Code.
+PlatformIO IDE is built on top of VSCode an extension. Once the VSCode is installed:
 1. Open VSCode Extension Manager
 2. Search for official PlatformIO IDE extension
 3. Install PlatformIO IDE. \([https://marketplace.visualstudio.com/items?itemName=platformio.platformio-ide](https://marketplace.visualstudio.com/items?itemName=platformio.platformio-ide)\)
@@ -111,14 +99,17 @@ If not already open, the PlatformIO Home view can be opened by clicking on the h
 
 It is highly recommended to give the quick-start guide a read. It will help you navigate the new interface. [https://docs.platformio.org/en/latest/integration/ide/vscode.html\#quick-start](https://docs.platformio.org/en/latest/integration/ide/vscode.html#quick-start)
 
-In this tutorial, as an example we will be using the [Helium Developer Kit](https://developer.helium.com/devices/devkit). One can substitue your target device as needed.
+In this tutorial, as an example we will be using the [Heltec Cubecell AB0x](https://heltec.org/proudct_center/lora/cubecell/). One can substitue your target device as needed.
 
 ![](assets/image17.png)
 
 Once PlatformIO is installed, you should be welcomed to VSCode with the following "PIO Home" screen:
 
-![](assets/image79.png)
+![](assets/heltec-cubecell-htcc-ab0x-platformio-welcome.png)
 
+If not already open, the PlatformIO Home view can be opened by clicking on the house icon within the VScode status bar.
+
+![](assets/heltec-cubecell-htcc-ab0x-home-button.png)
 
 
 
