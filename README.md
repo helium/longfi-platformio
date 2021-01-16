@@ -38,7 +38,7 @@ Any device specific additions will be found within a README inside the project.
 
 ### Heltec Cubecell board
 * [longfi-us915-basic-helium](Heltec-CubeCell-Board/examples/Helium-basic)
-* 
+
 ### ST-B-L072Z-LRWAN
 * [longfi-us915-double-tap](ST-B-L072Z-LRWAN1/examples/arduino-helium-us915-double-tap/)
 * [longfi-us915-pedometer](ST-B-L072Z-LRWAN1/examples/arduino-helium-us915-pedometer/)
