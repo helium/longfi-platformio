@@ -28,9 +28,13 @@ Please see the README in the example directories for instructions.
 
 # LongFi Platformio
 
-Here you will find a collection of Arduino sketch examples of transmitting on the Helium network with several LoRaWAN development boards. Some examples require additional hardware. Please see the README in the example directories for instructions.
+Here you will find a getting started guide as well as a collection of PlatformIO
+ project examples of transmitting on the Helium network with several LoRaWAN development boards. Some examples require additional hardware.
 
-* [PlatformIO Getting Started](getting-started.md)
+[PlatformIO Getting Started](getting-started.md)
+* This guide is intended to be somewhat generic in nature. While it does detail a specific target device one can easily substitue your own target device. 
+
+Any device specific additions will be found within a README inside the project.
 
 ### Heltec Cubecell board
 * [longfi-us915-basic-helium](Heltec-CubeCell-Board/examples/Helium-basic)
