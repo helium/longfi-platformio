@@ -19,13 +19,6 @@ It is architected to maximize flexibility and choice by developers, who can use 
 
 If you are used to developing using the Arduino IDE but constantly feel constrained by the environment, you are going to love what [PlatformIO ](https://platformio.org/)opens up for you.
 
- 
-Here you will find a collection of code examples using the PlatformIO platform running under Visual Studio Code. 
-
-https://developer.helium.com/resources/getting-started-with-platformio
-
-Please see the README in the example directories for instructions.
-
 # LongFi Platformio
 
 Here you will find a getting started guide as well as a collection of PlatformIO
