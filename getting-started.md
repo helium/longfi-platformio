@@ -202,11 +202,10 @@ The list should reflect your target device.
 Now that the code has built successfully, if a target device is attached to your computer the resulting
 binary can be uploaded to the target device.
 
-The method of uploading the binary to your device may vary depending on the target device. Information can be found within PlatformIO documentation here or within your target board vendors documentation set. We will attempt to include such information along with any sample project code we provided if the procedure is different from that described here.
+The method of uploading the binary to your device may vary depending on the target device. PlatformIO will attempt to configure upload options appropriate for the choosen board. If the default configuration does not work in your instance detailed information can be found within the PlatformIO documentation [here](https://docs.platformio.org/en/latest/projectconf/section_env_upload.html?highlight=upload) or within your target board vendors documentation set.
 
-## LAL FIX THIS
+We will attempt to include such information along with any sample project code we provided if the procedure is different from that described here.
 
-NOTE: A procedure to add J-Link support to PlatformIO found [here](#ADD-JLINK-SUPPORT).
 
 ```
 For instance our target, the Cubecell has a parculiar requirement:
@@ -256,12 +255,11 @@ For our sample application we need a few configuration items added to the projec
 One set is the project defaults, the next is serial debug monitor configurations and then 
 LoRaWAN configurations.
 
-Complete documentation of platformio.ini content can be found [here](https://docs.platformio.org/en/latest/projectconf/index.html).  
-Serial debug monitor specific items [here](https://docs.platformio.org/en/latest/projectconf/section_env_monitor.html).
+Complete documentation of platformio.ini content can be found [here](https://docs.platformio.org/en/latest/projectconf/index.html). Serial debug monitor specific items [here](https://docs.platformio.org/en/latest/projectconf/section_env_monitor.html).
 
 Note: The comment character for this file type is the semicolon.
 
-Update the projects platformio.ini with the following content:
+For our example Cubecell project we update the projects platformio.ini with the following content:
 ```
 ; Project Defaults
 [env:cubecell_gps]        ; a label for this definitions
@@ -284,8 +282,7 @@ board_build.arduino.lorawan.uplinkmode = UNCONFIRMED
 board_build.arduino.lorawan.rgb = DEACTIVE
 ;board_build.arduino.lorawan.debug_level = DIO
 board_build.arduino.lorawan.debug_level = FREQ_AND_DIO
-;board_build.arduino.lorawan.debug_level = NONE
-; NONE, FREQ, FREQ_AND_DIO    
+; debug_level options = NONE, FREQ, FREQ_AND_DIO    
 board_build.arduino.lorawan.adr = OFF
 board_build.arduino.lorawan.at_support = OFF
 board_build.arduino.lorawan.net_reserve = OFF
@@ -304,6 +301,18 @@ PlatformIO the "Build" button is the check-mark found within the bottom status b
 #### Inspect the build results
 The build output results can be found within the "Terminal View" typically found at the bottom of the VSCode window.
 Verify the build completed successfully.
+
+### Device Application Code Debugging
+If, as is frequently the case your application misbehaves VSCode/PlatformIO does support board level debugging via various debug probes/interfaces. A general debug discussion can be found [here](https://docs.platformio.org/en/latest/plus/debugging.html) or debug probe specific discussion [here](https://docs.platformio.org/en/latest/plus/debugging.html#tools-debug-probes).
+PlatformIO will attempt to seemlessly support your projects defined target board for debugging but with the vast number of target boards, not all are supported out of the box.
+
+If your target board has J-Link support the procedure found [here](#ADD-JLINK-SUPPORT) may be of interest.
+
+Again we will attempt to detail specific information within the target sample project README files. 
+
+```
+For example: Unfortunately at this time Cubecell does not support a debug probe that enjoys builtin support within PlatformIO.
+```
 
 ##### Possible Arduino to PlatformIO porting issues
 When porting Arduino sketches to PlatformIO you may find errors such as undefined functions. These may be functions that are called by setup() or loop() or other custom functions
