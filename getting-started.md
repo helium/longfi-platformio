@@ -302,17 +302,6 @@ PlatformIO the "Build" button is the check-mark found within the bottom status b
 The build output results can be found within the "Terminal View" typically found at the bottom of the VSCode window.
 Verify the build completed successfully.
 
-### Device Application Code Debugging
-If, as is frequently the case your application misbehaves VSCode/PlatformIO does support board level debugging via various debug probes/interfaces. A general debug discussion can be found [here](https://docs.platformio.org/en/latest/plus/debugging.html) or debug probe specific discussion [here](https://docs.platformio.org/en/latest/plus/debugging.html#tools-debug-probes).
-PlatformIO will attempt to seemlessly support your projects defined target board for debugging but with the vast number of target boards, not all are supported out of the box.
-
-If your target board has J-Link support the procedure found [here](#ADD-JLINK-SUPPORT) may be of interest.
-
-Again we will attempt to detail specific information within the target sample project README files. 
-
-```
-For example: Unfortunately at this time Cubecell does not support a debug probe that enjoys builtin support within PlatformIO.
-```
 
 ##### Possible Arduino to PlatformIO porting issues
 When porting Arduino sketches to PlatformIO you may find errors such as undefined functions. These may be functions that are called by setup() or loop() or other custom functions
@@ -383,6 +372,18 @@ gerger
 Click on the Extensi
 Click on the Extensi
 Congratulations! You have just transmitted data on the Helium network! The next step is to learn how to use your device data to build applications, visit our Integrations docs here.
+
+### Device Application Code Debugging
+If, as is frequently the case your application misbehaves VSCode/PlatformIO does support board level debugging via various debug probes/interfaces. A general debug discussion can be found [here](https://docs.platformio.org/en/latest/plus/debugging.html) or debug probe specific discussion [here](https://docs.platformio.org/en/latest/plus/debugging.html#tools-debug-probes).
+PlatformIO will attempt to seemlessly support your projects defined target board for debugging but with the vast number of target boards, not all are supported out of the box.
+
+If your target board has J-Link support the procedure found [here](#ADD-JLINK-SUPPORT) may be of interest.
+
+Again we will attempt to detail specific information within the target sample project README files. 
+
+```
+For example: Unfortunately at this time Cubecell does not support a debug probe that enjoys builtin support within PlatformIO.
+```
 
 ### Misc device application hints
 Follow this [link](#HTCC-APPLICATION-HINTS) for useful application enhancements.
