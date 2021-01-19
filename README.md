@@ -27,7 +27,10 @@ Here you will find a getting started guide as well as a collection of PlatformIO
  The [PlatformIO Getting Started](getting-started.md) guide is intended to be somewhat generic in nature. While it does detail a specific target device one can easily substitute  your own target device. Any device specific additions or suggestions can be found within the README inside the sample project.
 
 ### Heltec Cubecell board
-* [longfi-us915-basic-helium](Heltec-CubeCell-Board/examples/Helium-basic)
+* [longfi-helium-us915-basic](Heltec-CubeCell-Board/examples/cubecell-helium-us915-basic)
+* [longfi-helium-us915-gps](Heltec-CubeCell-Board/examples/cubecell-helium-us915-gps)
+
+### ST-B-L072Z-LRWAN1
 
 ### ST-B-L072Z-LRWAN1
 * [longfi-us915-double-tap](ST-B-L072Z-LRWAN1/examples/arduino-helium-us915-double-tap/)
