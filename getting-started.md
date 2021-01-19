@@ -239,16 +239,35 @@ To update the sample application created above:
 
 #### Add device credentials
 
-Next we'll need replace the placeholder AppEUI\(msb\), DevEUI\(msb\), and AppKey\(msb\) values found within the sample program with the real values found on the 
+Next we'll need replace the placeholder AppEUI, DevEUI, and AppKey values found within the sample program with the real values found on the 
  target device page within the Helium Console.
- Be sure to use the formatting buttons to match the endianess and formatting required for the program, shown below.
 
+```
+Note: 
+ The endianess required for these credentials varys depending on the LoRaWAN runtime library
+ implementation. Using a custom library implementation will require an understanding of that
+ libraries endian requirement, big endian or little endian.
+ ```
+ 
+ For our CubeCell example all values are big endian \(msb\), most significant bit on the left. 
+ 
 ![](assets/heltec-cubecell-htcc-ab01-console-details.png)
 
 At the top of the main.cpp file, replace the three **FILL\_ME\_IN** fields, with the matching field from the Helium Console, example shown below.
 Your numbers will be different depending on what the console creates when you add your target device.
 
 ![](assets/heltec-cubecell-htcc-ab01-console-keys.png)
+
+#### Verify LoRaWAN channels mask
+
+Runtime library implementations are designed to work across several LoRaWAN regions and networks. The firmware will attempt to join the network  using various frequency sub-bands, defined by a channel mask, until the join succeeds. It is recommended that you change the default channel mask to a value that will help the join process complete connection to the Helium network in a more timely manner. The process, where and how, to update this channel mask will vary depending on the LoRaWAN runtime implementation
+
+For our example using the Heltec CubeCell and it's runtime the following piece of code has been incorporated into the sample projects. Refer to a sample to determine where this code should reside, generally near the above mentioned credentials is fine.
+
+```
+/*LoraWan channelsmask, default channels 0-7*/ 
+uint16_t userChannelsMask[6]={ 0xFF00,0x0000,0x0000,0x0000,0x0000,0x0000 };
+```
 
 #### platformio.ini - project configurations
 For our sample application we need a few configuration items added to the project platformio.ini file.
