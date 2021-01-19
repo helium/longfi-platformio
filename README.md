@@ -21,18 +21,15 @@ If you are used to developing using the Arduino IDE but constantly feel constrai
 
 # LongFi Platformio
 
-Here you will find a getting started guide as well as a collection of PlatformIO
- project examples of transmitting on the Helium network with several LoRaWAN development boards. Some examples require additional hardware.
+Here you will find a getting started guide as well as a collection of PlatformIO project examples which transmit data across the Helium network via several target development boards. NOTE: Some examples may require additional hardware.
 
-[PlatformIO Getting Started](getting-started.md)
-* This guide is intended to be somewhat generic in nature. While it does detail a specific target device one can easily substitue your own target device. 
 
-Any device specific additions will be found within a README inside the project.
+ The [PlatformIO Getting Started](getting-started.md) guide is intended to be somewhat generic in nature. While it does detail a specific target device one can easily substitue your own target device. Any device specific additions or suggestions can be found within the README inside the sample project.
 
 ### Heltec Cubecell board
 * [longfi-us915-basic-helium](Heltec-CubeCell-Board/examples/Helium-basic)
 
-### ST-B-L072Z-LRWAN
+### ST-B-L072Z-LRWAN1
 * [longfi-us915-double-tap](ST-B-L072Z-LRWAN1/examples/arduino-helium-us915-double-tap/)
 * [longfi-us915-pedometer](ST-B-L072Z-LRWAN1/examples/arduino-helium-us915-pedometer/)
 
