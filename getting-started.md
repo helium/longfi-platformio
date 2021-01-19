@@ -10,10 +10,10 @@
 
 This guide will walk through installing PlatformIO and deploying a Helium Arduino program on a target device.
 Here, as an example, we will detail the steps required to integrate a specific board type, one of the 
-[Heltec Cubecell AB0x](https://heltec.org/proudct_center/lora/cubecell/) family of boards.
+[Heltec CubeCell AB0x](https://heltec.org/proudct_center/lora/cubecell/) family of boards.
 
 However, this guide can be also used to on-board many other types of target devices. In most cases one can just
-substitute your target device in place of the Cubecell developer board.
+substitute your target device in place of the CubeCell developer board.
 
 If there are extensive differences they can be found within documentation provided for supported target device examples.
 Before we begin, please make sure you've followed the steps from this guide, which goes over some initial setup steps.
@@ -25,7 +25,7 @@ Before we begin, please make sure you've followed the steps from this guide, whi
 In this guide, you will learn:
 
 * How to setup your PlatformIO IDE environment
-* How to create. build, upload a simple embedded application
+* How to create, build, upload a simple embedded application
 * How to program a basic application that will send packets over the Helium Network
 * Verify real-time packets sent to the Helium Console via Hotspot that's in range
 
@@ -54,7 +54,7 @@ There is no installation required however one will need to create a user account
 
 Your board should have come with a U.FL antenna. All you have to do is attach it to the U.FL port on the developer board. The method of attachment varies depending on the target board.
 
-In the case of our example Heltec Cubecell board, some versions of the board may have more than one U.FL port, if this is the case generally the LoRa antenna attaches to the port that is on the same side of the board as contains the USB port connector.
+In the case of our example Heltec CubeCell board, some versions of the board may have more than one U.FL port, if this is the case generally the LoRa antenna attaches to the port that is on the same side of the board as contains the USB port connector.
 In all cases it is best to verify the proper connector with the board manufacturer.
 
 #### Connect Target Board to Development PC<a id="connect-board"></a>
@@ -85,7 +85,7 @@ PlatformIO IDE is built on top of VSCode as an extension. Once the VSCode is ins
 
 It is highly recommended to give the quick-start guide a read. It will help you navigate the unfamiliar interface. [https://docs.platformio.org/en/latest/integration/ide/vscode.html\#quick-start](https://docs.platformio.org/en/latest/integration/ide/vscode.html#quick-start)
 
-In this tutorial, as an example, we will be using the [Heltec Cubecell AB0x](https://heltec.org/proudct_center/lora/cubecell/). One can substitue your target device as needed as you progress through these steps.
+In this tutorial, as an example, we will be using the [Heltec CubeCell AB0x](https://heltec.org/proudct_center/lora/cubecell/). One can substitute your target device as needed as you progress through these steps.
 
 
 Once PlatformIO is installed, you should be welcomed to VSCode with the following "PIO Home" screen:
@@ -104,7 +104,7 @@ If you have not have not already used PlatformIO to build, upload and verify the
 If you are familiar and confident with the steps required you can continue at "Updating the sample with Helium network access code"
 by clicking [here](#ADD-HELIUM-NETWORK-CODE).
  
-The following steps will walk you through the what is required to:
+The following steps will walk you through what is required to:
 - create a template project
 - inspect the default source file, main.cpp as well as the primary project configuration file, platformio.ini
 - build the project and inspect the build log output
@@ -147,7 +147,7 @@ Typical project explorer view.
 If you are familiar developing within the Arduino IDE, main.cpp is much the 
 same as the Arduino *.ino. It also contains default setup() and loop() functions.
 
-PlatformIO also adds a required "\#include <Arduino.h\>" statement. This is a important/necessary difference between PlatformIO and Arduino IDEs. 
+PlatformIO also adds a required "\#include <Arduino.h\>" statement. This is an important/necessary difference between PlatformIO and Arduino IDEs. 
 
 ![](assets/heltec-cubecell-htcc-ab0x-main-cpp.png)
 
@@ -159,7 +159,7 @@ Note: when this file is modified the entire project will be rebuilt when the pro
 
 ![](assets/heltec-cubecell-htcc-ab0x-platform-ini.png)
 
-Here we see the platformio.ini file that was created as a result of the running the New Project wizard targeting our Cubecell board.
+Here we see the platformio.ini file that was created as a result of the running the New Project wizard targeting our CubeCell board.
 
 
 #### Build the target device application
@@ -171,13 +171,13 @@ Now that the template project has been created it's time to build the device app
 
 #### Inspect the build output
 
-Due to the defines Within platformio.ini, PlatformIO is able to determine the project board and framework dependencies.
-Any missing dependencies are automatically installed at build time, thus this process may be see in the build output.
+Due to the defines within platformio.ini, PlatformIO is able to determine the project board and framework dependencies.
+Any missing dependencies are automatically installed at build time, thus this process may be seen in the build output.
 This feature allows us to add libraries into our platformio.ini file, which will then be downloaded for us, if needed, at build time.
 
 
 The build process results can be found within the "Terminal View" typically found at the bottom of the VSCode window.
-Much like with Arduino, the build output will dump the calculate amount of Ram and Flash memory 
+Much like with Arduino, the build output will dump the calculated amount of Ram and Flash memory 
 used by your application. 
 
 ![](assets/heltec-cubecell-htcc-ab0x-build-output_1.png)
@@ -202,13 +202,13 @@ The list should reflect your target device.
 Now that the code has built successfully, if a target device is attached to your computer the resulting
 binary can be uploaded to the target device.
 
-The method of uploading the binary to your device may vary depending on the target device. PlatformIO will attempt to configure upload options appropriate for the choosen board. If the default configuration does not work in your instance detailed information can be found within the PlatformIO documentation [here](https://docs.platformio.org/en/latest/projectconf/section_env_upload.html?highlight=upload) or within your target board vendors documentation set.
+The method of uploading the binary to your device may vary depending on the target device. PlatformIO will attempt to configure upload options appropriate for the chosen board. If the default configuration does not work in your instance detailed information can be found within the PlatformIO documentation [here](https://docs.platformio.org/en/latest/projectconf/section_env_upload.html?highlight=upload) or within your target board vendors documentation set.
 
 We will attempt to include such information along with any sample project code we provided if the procedure is different from that described here.
 
 
 ```
-For instance our target, the Cubecell has a parculiar requirement:
+For instance our target, the CubeCell has a peculiar requirement:
 Prior to attempting to upload your binary make sure any terminal session that might be attached 
 to the debug comm port has been deleted. Occasionally but not always, PlatformIO will automatically
 close the comm port. If it does not upload errors will occur.
@@ -228,19 +228,19 @@ If you have made it this far then we know your environment can build and upload 
 ### Sample Helium Network Access Code <a name="ADD-HELIUM-NETWORK-CODE"></a>
 #### Update main.cpp
 
-Now that we have the required board and library runtime support installed, lets program the board
- with the an example Helium network enabled application.
+Now that we have the required board and library runtime support installed, let's program the board
+ with an example Helium network enabled application.
 
 To update the sample application created above:
-- open, within PlatformIO, your projects src/main.ccp fileger
-Click on the Extensi that was created by the wizard.
+- open, within PlatformIO, your projects src/main.ccp file
+
 TODO: get link
 - replace the template main.cpp with the application found [here](https://github.com/helium/XXXXXXHeltec-CubeCell-Board/longfi-us915/longfi-us915.ino), copy and paste the entirety of it.
 
 #### Add device credentials
 
 Next we'll need replace the placeholder AppEUI\(msb\), DevEUI\(msb\), and AppKey\(msb\) values found within the sample program with the real values found on the 
- target device page in the Helium Console.
+ target device page within the Helium Console.
  Be sure to use the formatting buttons to match the endianess and formatting required for the program, shown below.
 
 ![](assets/heltec-cubecell-htcc-ab01-console-details.png)
@@ -259,7 +259,7 @@ Complete documentation of platformio.ini content can be found [here](https://doc
 
 Note: The comment character for this file type is the semicolon.
 
-For our example Cubecell project we update the projects platformio.ini with the following content:
+For our example CubeCell project we update the projects platformio.ini with the following content:
 ```
 ; Project Defaults
 [env:cubecell_gps]        ; a label for this definitions
@@ -327,15 +327,11 @@ button found on the status bar
 
 NOTE: Prior to attempting to upload your binary make sure any terminal session that might be attached 
 to the debug comm port has been deleted. Occasionally but not always, PlatformIO will automatically
-close the comm port, if it does not upload errors will occger
-Click on the Extensiur.
+close the comm port, if it does not upload errors will occur.
 
 ![](assets/heltec-cubecell-htcc-ab01-arduino-upload.png)
 Successful upload example, your results will vary.
 
-ger
-Click on the Extensiger
-Click on the Extensi
 #### Viewing Target Device Serial Output <a id="viewing-serial-output"></a>
 
 When your firmware update completes, the board will reset, and begin by joining the network.
@@ -346,13 +342,11 @@ When your firmware update completes, the board will reset, and begin by joining 
  To open the serial monitor click on the "Serial Monitor" button within the status bar.
 
 ![](assets/heltec-cubecell-htcc-ab0x-serial-monitor.png)
-ger
-Click on the Extensi
+
 You should begin to see output similar to below.
 
 ![](assets/heltec-cubecell-htcc-ab01-arduino-serial.png)
-ger
-Click on the Extensi
+
 You can use any virtual terminal emulator for this purpose, but recall certain Heltec boards seem
 to require the terminal emulator be disconnected from the target device prior to attempting to upload
 a new binary.
@@ -368,21 +362,19 @@ Scroll down a bit on the device page and you should see something similar to the
 Activation messages are those seen when the device first attempts to join the network.  
 Downlink messages are those delivered from the network to your target device.  
 Uplink messages are those messages delivered from your target device to the Helium network.
-gerger
-Click on the Extensi
-Click on the Extensi
+
 Congratulations! You have just transmitted data on the Helium network! The next step is to learn how to use your device data to build applications, visit our Integrations docs here.
 
 ### Device Application Code Debugging
 If, as is frequently the case your application misbehaves VSCode/PlatformIO does support board level debugging via various debug probes/interfaces. A general debug discussion can be found [here](https://docs.platformio.org/en/latest/plus/debugging.html) or debug probe specific discussion [here](https://docs.platformio.org/en/latest/plus/debugging.html#tools-debug-probes).
-PlatformIO will attempt to seemlessly support your projects defined target board for debugging but with the vast number of target boards, not all are supported out of the box.
+PlatformIO will attempt to seamlessly support your projects defined target board for debugging but with the vast number of target boards, not all are supported out of the box.
 
 If your target board has J-Link support the procedure found [here](#ADD-JLINK-SUPPORT) may be of interest.
 
 Again we will attempt to detail specific information within the target sample project README files. 
 
 ```
-For example: Unfortunately at this time Cubecell does not support a debug probe that enjoys builtin support within PlatformIO.
+For example: Unfortunately at this time CubeCell does not support a debug probe that enjoys built-in support within PlatformIO.
 ```
 
 ### Misc device application hints
@@ -390,14 +382,11 @@ Follow this [link](#HTCC-APPLICATION-HINTS) for useful application enhancements.
 
 ### Manual updates to the Heltec runtime libraries <a name="HTCC-MANUAL-RUNTIME-UPDATES"></a>
 Some versions of Heltec's runtime libraries have set default configuration variables to values that are incompatible with the Helium network, especially when the Heltec device is configured targeting the North American market. 
-The following discusses Heltec runtime files that must be inspected to ensure compatibility. The exact location of these files will depend on which operating system you areger
-Click on the Extensi using, Windows, Linux, or Mac.
-The typical top level locations of the runtime libraries is shown below for each operating system. From there the following discussions will present to you the file locations within these top level directories/folders. Please note the Heltec library version numbers are expected to change as time goes on.
+The following discusses Heltec runtime files that must be inspected to ensure compatibility. The exact location of these files will depend on which operating system you are using, Windows, Linux, or Mac.
+The typical top level location of the runtime libraries is shown below for each operating system. From there the following discussions will present to you the file locations within these top level directories/folders. Please note the Heltec library version numbers are expected to change as time goes on.
 XXXXX denotes your specific user id.
-ger
-Click on the Extensi
-##### PlatformIO IDE Heltec runtime library locations:ger
-Click on the Extensi
+
+##### PlatformIO IDE Heltec runtime library locations:
 
 * Windows
 ```text
@@ -415,7 +404,7 @@ C:\Users\XXXX\.platformio\packages\framework-arduinoasrmicro650x\
 #### Verify LoRaWAN Data Rate
 Within an editor of your choice open the file path formed by prepending the above described IDE/platform specific top level directory structure to the following file:
 ```text
-libraries/LoRa/src/LoRaWan_APP.cpp    (LiHTCC-APPLICATION-HINTS
+libraries/LoRa/src/LoRaWan_APP.cpp
 NOTE: If you try to transfer a packet that is larger than this setting allows, your device may successfully join the network but the data transmit will fail silently.
 
 Update the LORAWAN\_DEFAULT\_DATARATE as appropriate for your application needs.
@@ -433,8 +422,7 @@ Within an editor of your choice open the file path formed by prepending the abov
 cores/asr650x/loramac/mac/region/RegionUS915.c     (Linux/Mac)
 cores\asr650x\loramac\mac\region\RegionUS915.c     (Windows)
 ```
-ger
-Click on the Extensi
+
 Within this file locate the line below, the 7th parameter which might be 14 should be changed to either 8 or 16. Either value will work. Earlier versions of the runtime may have this value set to 14 which is "not" correct.
 Change:
 ```text
@@ -452,10 +440,8 @@ Heltec support has been notified of these issues, hopefully a future release of 
 
 The CubeCell may have issues joining the network with ADR OFF. If you're using ADR ON, you may also encounter an issue where your CubeCell stops successfully sending packets after a few minutes. This is caused by the CubeCell firmware's ADR behavior, and may happen if your payload is above the DR0 maximum size \(11 bytes\).
 
-To patch the CubeCell firmware, find and open the `RegionUS915.c` file in the firmware directory. On macOS, an example path would be `~/Library/Arduino15/packages/CubeCell/hardware/CubeCell/1.0.0/coger
-Click on the Extensires/asr650x/loramac/mac/region/RegionUS915.c`.
-ger
-Click on the Extensi
+To patch the CubeCell firmware, find and open the `RegionUS915.c` file in the firmware directory. On macOS, an example path would be `~/Library/Arduino15/packages/CubeCell/hardware/CubeCell/1.0.0/cores/asr650x/loramac/mac/region/RegionUS915.c`.
+
 Find the following lines in the file and comment them out:
 
 ```text
@@ -471,7 +457,7 @@ This will prevent the CubeCell from reducing the Data Rate over time and allow y
 
 ### Device application hints<a id="HTCC-APPLICATION-HINTS"></a>
 
-#### Using HTCC-AB02S Board With GPS Capable Sketch <a id="HTCC-AB02S-with-GPS"></a>
+#### Using HTCC-AB02S Board with GPS Capable Sketch <a id="HTCC-AB02S-with-GPS"></a>
 
 If you are using the HTCC-AB02S board with a program that is GPS enabled but find the device is unable to obtain a GPS lock you can try changing the GPS data satellite source via the GPS class Air530.setMode\(\) API. Add the Air530.setmode\(\) to the setup\(\) method of your sketch.
 
