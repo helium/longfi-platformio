@@ -233,9 +233,7 @@ Now that we have the required board and library runtime support installed, let's
 
 To update the sample application created above:
 - open, within PlatformIO, your projects src/main.ccp file
-
-TODO: get link
-- replace the template main.cpp with the application found [here](https://github.com/helium/XXXXXXHeltec-CubeCell-Board/longfi-us915/longfi-us915.ino), copy and paste the entirety of it.
+- replace this template main.cpp with the content of the sample application found [here](Heltec-CubeCell-Board/examples/Helium-basic/src/main.cpp). Copy and paste the entirety of it.
 
 #### Add device credentials
 
@@ -259,39 +257,11 @@ Complete documentation of platformio.ini content can be found [here](https://doc
 
 Note: The comment character for this file type is the semicolon.
 
-For our example CubeCell project we update the projects platformio.ini with the following content:
-```
-; Project Defaults
-[env:cubecell_gps]        ; a label for this definitions
-platform = asrmicro650x   ; target processor type for CubeCell
-board = cubecell_gps      ; denotes this is for board type AB02S
-;board = cubecell_board_plus  ; board type for AB02
-framework = arduino       ; using ported version of Arduino runtime
-; extra custom compile time flags are specified like this
-; build_flags =   -I ../lib/cayenne -D LoRaWAN_DEBUG_LEVEL=3 -Wl,-Map=.pio/build/cubecell_gps/output.map
-;
-;
-; Serial debug monitor configurations defines
-monitor_speed = 115200       ; debug monitor baud rate, needs to match Serial.begin(xxxx)
-; monitor_port = COM[3]
-;
-;
-; LoRaWan configuration defines
-board_build.arduino.lorawan.region = US915
-board_build.arduino.lorawan.uplinkmode = UNCONFIRMED
-board_build.arduino.lorawan.rgb = DEACTIVE
-;board_build.arduino.lorawan.debug_level = DIO
-board_build.arduino.lorawan.debug_level = FREQ_AND_DIO
-; debug_level options = NONE, FREQ, FREQ_AND_DIO    
-board_build.arduino.lorawan.adr = OFF
-board_build.arduino.lorawan.at_support = OFF
-board_build.arduino.lorawan.net_reserve = OFF
-board_build.arduino.lorawan.class = CLASS_A
-board_build.arduino.lorawan.netmode = OTAA
-```
+For our example CubeCell project we update the projects platformio.ini with the content from the sample project:
+- open, within PlatformIO, your projects platformio.ini file
+- replace this template file with the content found [here](Heltec-CubeCell-Board/examples/Helium-basic/platformio.ini). Copy and paste the entirety of it.
 
-
-Once you have become more familiar with the LoRaWAN/Helium network feel free to experiment with different configuration settings.
+Once you have become more familiar with the LoRaWAN/Helium network feel free to experiment with different configuration settings possible within platformio.ini.
 
 #### Build the device application
 
