@@ -235,7 +235,7 @@ Now that we have the required board and library runtime support installed, let's
 
 To update the sample application created above:
 - open, within PlatformIO, your projects src/main.ccp file
-- replace this template main.cpp with the content of the sample application found [here](Heltec-CubeCell-Board/examples/Helium-basic/src/main.cpp). Copy and paste the entirety of it.
+- replace this template main.cpp with the content of the sample application found [here](Heltec-CubeCell-Board/examples/cubecell-helium-us915-basic/src/main.cpp). Copy and paste the entirety of it.
 
 #### Add device credentials
 
@@ -280,7 +280,7 @@ Note: The comment character for this file type is the semicolon.
 
 For our example CubeCell project we update the projects platformio.ini with the content from the sample project:
 - open, within PlatformIO, your projects platformio.ini file
-- replace this template file with the content found [here](Heltec-CubeCell-Board/examples/Helium-basic/platformio.ini). Copy and paste the entirety of it.
+- replace this template file with the content found [here](Heltec-CubeCell-Board/examples/cubecell-helium-us915-basic/platformio.ini). Copy and paste the entirety of it.
 
 Once you have become more familiar with the LoRaWAN/Helium network feel free to experiment with different configuration settings possible within platformio.ini.
 
