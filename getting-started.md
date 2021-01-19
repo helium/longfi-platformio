@@ -45,7 +45,7 @@ There is no installation required however one will need to create a user account
 
 * [VSCode \(IDE)](https://code.visualstudio.com/)
     * [PlatformIO \(VScode Extension)](https://platformio.org/)
-* [Helium Console](https://console.helium.com/) 
+* [Helium Console](https://www.helium.com/console) 
 
 
 ## Hardware Setup <a id="hardware-setup"></a>
@@ -226,6 +226,8 @@ Below you will see a typical output as the binary is uploaded to the target boar
 If you have made it this far then we know your environment can build and upload a device application. Now it's time to connect to the Helium network.
 
 ### Sample Helium Network Access Code <a name="ADD-HELIUM-NETWORK-CODE"></a>
+If you have not created a simple template project and you want to try one of the samples you can copy a sample into your workspace where it should build without error. Alternatively you can update the template project created above by continuing the following steps.
+
 #### Update main.cpp
 
 Now that we have the required board and library runtime support installed, let's program the board
@@ -299,7 +301,7 @@ NOTE: Prior to attempting to upload your binary make sure any terminal session t
 to the debug comm port has been deleted. Occasionally but not always, PlatformIO will automatically
 close the comm port, if it does not upload errors will occur.
 
-![](assets/heltec-cubecell-htcc-ab01-arduino-upload.png)
+![](assets/heltec-cubecell-htcc-ab01-arduino-upload.png)   
 Successful upload example, your results will vary.
 
 #### Viewing Target Device Serial Output <a id="viewing-serial-output"></a>
@@ -344,7 +346,8 @@ If your target board has J-Link support the procedure found [here](#ADD-JLINK-SU
 Again we will attempt to detail specific information within the target sample project README files. 
 
 ```
-For example: Unfortunately at this time CubeCell does not support a debug probe that enjoys built-in support within PlatformIO.
+For example: Unfortunately at this time CubeCell does not support a debug probe that enjoys
+built-in support within PlatformIO.
 ```
 
 ### Misc device application hints
@@ -375,6 +378,8 @@ C:\Users\XXXX\.platformio\packages\framework-arduinoasrmicro650x\
 Within an editor of your choice open the file path formed by prepending the above described IDE/platform specific top level directory structure to the following file:
 ```text
 libraries/LoRa/src/LoRaWan_APP.cpp
+```
+
 NOTE: If you try to transfer a packet that is larger than this setting allows, your device may successfully join the network but the data transmit will fail silently.
 
 Update the LORAWAN\_DEFAULT\_DATARATE as appropriate for your application needs.
@@ -388,7 +393,7 @@ Be sure to prepend the above described platform/IDE specific top level directory
 The following is the file that must be checked if targeting region US915.
 Within an editor of your choice open the file path formed by prepending the above described IDE/platform specific top level directory structure to the following file:
 
-```text
+```
 cores/asr650x/loramac/mac/region/RegionUS915.c     (Linux/Mac)
 cores\asr650x\loramac\mac\region\RegionUS915.c     (Windows)
 ```
@@ -410,7 +415,10 @@ Heltec support has been notified of these issues, hopefully a future release of 
 
 The CubeCell may have issues joining the network with ADR OFF. If you're using ADR ON, you may also encounter an issue where your CubeCell stops successfully sending packets after a few minutes. This is caused by the CubeCell firmware's ADR behavior, and may happen if your payload is above the DR0 maximum size \(11 bytes\).
 
-To patch the CubeCell firmware, find and open the `RegionUS915.c` file in the firmware directory. On macOS, an example path would be `~/Library/Arduino15/packages/CubeCell/hardware/CubeCell/1.0.0/cores/asr650x/loramac/mac/region/RegionUS915.c`.
+To patch the CubeCell firmware, find and open the `RegionUS915.c` file in the firmware directory. On macOS, an example path would be ```
+```
+~/Library/Arduino15/packages/CubeCell/hardware/CubeCell/1.0.0/cores/asr650x/loramac/mac/region/RegionUS915.c.
+```
 
 Find the following lines in the file and comment them out:
 
@@ -448,7 +456,15 @@ LoRaWAN.setDataRateForNoADR(int8_t dataRate);
 This should be done sometime after LoRaWAN.init() is called.
 
 ### Adding JLink support for uploading binary  <a id="ADD-JLINK-SUPPORT"></a>
- Notice that under **Description**, it says we are running "JLink" rather than "ST-Link". If we were to attempt to flash the board at this point, we would get a failure that looked like this:
+Certain target platform boards may support debugging via JLink even though by default they are programmed supporting ST-Link. This is the 
+case if your target is the ST DISCO_L072CS_LRWAN1 developer board.
+What follows is a procedure that might be useful if ST-Link support is not adequate for your needs or you experience trouble uploading your binary to the target board.
+
+```
+NOTE: Verify with the board manufacturer that this is supported before attempting this conversion.
+```
+
+A typical failure to upload your binary may be similar to the following:
 
 ```text
 Configuring upload protocol...
@@ -474,7 +490,7 @@ The terminal process terminated with exit code: 1
 
 ```
 
-What happened here? Well, we have this board set up to use a `SEGGER JTAG` interface rather than the `ST-Link` interface that is integrated into the Discovery board. There are a number of advantages of this approach, and I would _highly_ suggest doing this. It will make your development iteration process much faster.
+What happened here? Well, we have this board set up to use a `SEGGER JTAG` interface rather than the `ST-Link` interface that is integrated into the Discovery board. There are a number of advantages of this approach, and we would _highly_ suggest doing this. It will make your development iteration process much faster.
 
 Luckily, `SEGGER` has provided a method to \(non-destructively\) replace the ST-Link on our board with a JTAG interface.
 
