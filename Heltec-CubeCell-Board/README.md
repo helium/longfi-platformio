@@ -12,7 +12,7 @@ For a complete guide to getting started with PlatformIO and the CubeCell refer t
 ## Resources
 [Product Page](https://heltec.org/proudct_center/lora/cubecell/)  
 [Manual](https://heltec-automation-docs.readthedocs.io/en/latest/cubecell/index.html)  
-[US Retailer - Parley Labs](https://parleylabs.com/shop/)
+[US Retailer - Parley Labs](https://shop.parleylabs.com)
 
 ## Firmware examples 
 * [longfi-helium-us915-basic](examples/cubecell-helium-us915-basic)
