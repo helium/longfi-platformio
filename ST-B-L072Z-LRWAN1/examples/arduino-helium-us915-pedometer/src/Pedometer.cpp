@@ -1,6 +1,5 @@
-/**
- ******************************************************************************
- * @file   X_NUCLEO_IKS01A3_LSM6DSO_DoubleTap.ino
+/*****************************************************************************
+ * @file   X_NUCLEO_IKS01A3_LSM6DSO_Pedometer.ino
  * @author  SRA
  * @version V1.0.0
  * @date    February 2019
@@ -43,12 +42,12 @@
 #include <lmic.h>
 #include <hal/hal.h>
 #include <SPI.h>
-#include <CayenneLPP.h>
+//#include <CayenneLPP.h>
 #include <LSM6DSOSensor.h>
 
 void do_send(osjob_t *);
 
-static uint8_t mydata[] = "Double Tap";
+static uint8_t mydata[11];
 static osjob_t sendjob;
 
 #ifdef ARDUINO_SAM_DUE
@@ -71,7 +70,10 @@ int32_t gyroscope[3];
 //Interrupts.
 volatile int mems_event = 0;
 
+uint16_t step_count = 0;
+uint16_t last_step_count = 0;
 char report[256];
+uint32_t previous_tick;
 
 void INT1Event_cb();
 
@@ -91,17 +93,17 @@ void INT1Event_cb();
 // This EUI must be in little-endian format, so least-significant-byte
 // first. When copying an EUI from the Helium Console, this means to reverse
 // the bytes.
-static const u1_t PROGMEM DEVEUI[8] = {FILLMEIN};
+static const u1_t PROGMEM DEVEUI[8] = {0x74, 0x28, 0x68, 0xE8, 0x8F, 0x33, 0xAE, 0xAA};
 void os_getDevEui(u1_t *buf) { memcpy_P(buf, DEVEUI, 8); }
 
 // This should also be in little endian format, see above.
-static const u1_t PROGMEM APPEUI[8] = {FILLMEIN};
+static const u1_t PROGMEM APPEUI[8] = {0x61, 0xAD, 0x19, 0x91, 0x81, 0x4B, 0xC7, 0x05};
 void os_getArtEui(u1_t *buf) { memcpy_P(buf, APPEUI, 8); }
 
 // This key should be in big endian format (or, since it is not really a
 // number but a block of memory, endianness does not really apply). In
 // practice, a key taken from the Helium Console can be copied as-is.
-static const u1_t PROGMEM APPKEY[16] = {FILLMEIN};
+static const u1_t PROGMEM APPKEY[16] = {0xFB, 0x44, 0x7F, 0xDD, 0x22, 0xEC, 0x0F, 0xEA, 0x4A, 0x06, 0xE7, 0xE9, 0xAB, 0x04, 0xC7, 0xB6};
 void os_getDevKey(u1_t *buf) { memcpy_P(buf, APPKEY, 16); }
 
 // Pin mapping
@@ -178,8 +180,12 @@ void do_send(osjob_t *j)
   else
   {
     // Prepare upstream data transmission at the next possible time.
+    snprintf((char *)mydata, sizeof(mydata), "Step:%d", step_count);
+
     LMIC_setTxData2(1, mydata, sizeof(mydata) - 1, 0);
-    Serial.println(F("Packet queued"));
+    // Serial.println("Packet queued");
+    Serial.print("  ========->\tSending report to network: ");
+    Serial.println((char *)mydata);
   }
   // Next TX is scheduled after TX_COMPLETE event.
 }
@@ -326,7 +332,11 @@ void setup()
 
   accGyr = new LSM6DSOSensor(&DEV_I2C);
   accGyr->Enable_X();
-  accGyr->Enable_Double_Tap_Detection(LSM6DSO_INT1_PIN);
+  uint8_t rc = accGyr->Enable_Pedometer();
+  Serial.print("Enable Pedometer returns: ");
+  Serial.println(rc);
+
+  previous_tick = millis();
 
 #if defined(ARDUINO_DISCO_L072CZ_LRWAN1)
   SPI.setMOSI(RADIO_MOSI_PORT);
@@ -349,7 +359,6 @@ void setup()
 
   LMIC_setLinkCheckMode(0);
   LMIC_setDrTxpow(DR_SF7, 14);
-  // Helium uses sub-band 2, underlying array is zero based
   LMIC_selectSubBand(1);
 
   do_send(&sendjob);
@@ -362,17 +371,38 @@ void loop()
     mems_event = 0;
     LSM6DSO_Event_Status_t status;
     accGyr->Get_X_Event_Status(&status);
-    if (status.DoubleTapStatus)
+  
+     if (status.StepStatus)
     {
-      // Output data.
-      SerialPort.println("Double Tap Detected!");
-      do_send(&sendjob);
+      // New step detected, so print the step counter
+      accGyr->Get_Step_Count(&step_count);
+      
+      snprintf(report, sizeof(report), "Event reported step counter: %d", step_count);
+      SerialPort.println(report);
+
+      // do not send "every" step to the nextwork, every 5
+      if (step_count > last_step_count + 5)
+      {
+        do_send(&sendjob);
+        last_step_count = step_count;
+        
+      }
       // Led blinking.
       digitalWrite(LED_BUILTIN, HIGH);
       delay(100);
       digitalWrite(LED_BUILTIN, LOW);
-    }
+    }    
   }
+  // Print the step counter in any case every 3000 ms
+  uint32_t current_tick = millis();
+  if((current_tick - previous_tick) >= 3000)
+  {
+    accGyr->Get_Step_Count(&step_count);
+    snprintf(report, sizeof(report), "Loop reported step counter: %d", step_count);
+    SerialPort.println(report);
+    previous_tick = millis();
+  }
+
   os_runloop_once();
 }
 
