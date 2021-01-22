@@ -11,7 +11,7 @@ Here you will find one or more sample PlatformIO embedded projects designed to t
 ## Resources
 [Product Page](https://store.rakwireless.com/products/wisblock-starter-kit)  
 [Manual](https://docs.rakwireless.com/Product-Categories/WisBlock/)  
-[US Retailer - Parley Labs](https://parleylabs.com/shop/)
+[US Retailer - Parley Labs](https://shop.parleylabs.com)
 
 ## Firmware examples 
 * [LoRaWan_OTAA](examples/LoRaWan_OTAA/)
