@@ -33,7 +33,7 @@ The WisBlock starter kit comes with two antenna types,
  #### Software
 The WisBlock is not currently supported by PlatformIO out of the box. One must install VSCode/PlatformIO and then take some extra steps to add support for WisBlock.
 
-The Helium [Getting started with Helium and PlatformIO](getting-started.md) can be used as a reference after one has installed the necessary PlatformIO pieces and parts detailed
+The Helium [Getting started with Helium and PlatformIO](../getting-started.md) can be used as a reference after one has installed the necessary PlatformIO pieces and parts detailed
 within the RAKWireless guide.
 
 The RAKWireless getting started guide will walk you through the steps required to build a WizBlock embedded app with PlatformIO. It can be found at
