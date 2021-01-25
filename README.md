@@ -26,13 +26,11 @@ Here you will find a getting started guide as well as a collection of PlatformIO
 
  The [PlatformIO Getting Started](getting-started.md) guide is intended to be somewhat generic in nature. While it does detail a specific target device one can easily substitute  your own target device. Any device specific additions or suggestions can be found within the README inside the sample project.
 
-### Heltec Cubecell board
-* [longfi-helium-us915-basic](Heltec-CubeCell-Board/examples/cubecell-helium-us915-basic)
-* [longfi-helium-us915-gps](Heltec-CubeCell-Board/examples/cubecell-helium-us915-gps)
+### Example Target Device Applications
 
-### ST-B-L072Z-LRWAN1
+[Heltec Cubecell board](Heltec-CubeCell-Board/README.md)
 
-### ST-B-L072Z-LRWAN1
-* [longfi-us915-double-tap](ST-B-L072Z-LRWAN1/examples/arduino-helium-us915-double-tap/)
-* [longfi-us915-pedometer](ST-B-L072Z-LRWAN1/examples/arduino-helium-us915-pedometer/)
+[RAKWireless WisBlock Starter](RAKWireless-WisBlock/README.md)
+
+[STM32L0 Discovery kit LoRa (ST-B-L072Z-LRWAN1)](ST-B-L072Z-LRWAN1/README.md)
 
