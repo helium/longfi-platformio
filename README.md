@@ -21,10 +21,9 @@ If you are used to developing using the Arduino IDE but constantly feel constrai
 
 # LongFi PlatformIO
 
-Here you will find a getting started guide as well as a collection of PlatformIO project examples which transmit data across the Helium network via several target development boards. NOTE: Some examples may require additional hardware.
+Here you will find a collection of PlatformIO project examples which transmit data across the Helium network via several target development boards. NOTE: Some examples may require additional hardware.
 
-
- The [PlatformIO Getting Started](getting-started.md) guide is intended to be somewhat generic in nature. While it does detail a specific target device one can easily substitute  your own target device. Any device specific additions or suggestions can be found within the README inside the sample project.
+Full "How To" guides can be found within the devices section of the Helium documentation set at https://docs.helium.com/use-the-network/devices. A link to the appropriate guide is provided within the README contained within each of the device locations linked to below.
 
 ### Example Target Device Applications
 
