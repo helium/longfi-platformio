@@ -93,17 +93,17 @@ void INT1Event_cb();
 // This EUI must be in little-endian format, so least-significant-byte
 // first. When copying an EUI from the Helium Console, this means to reverse
 // the bytes.
-static const u1_t PROGMEM DEVEUI[8] = {0x74, 0x28, 0x68, 0xE8, 0x8F, 0x33, 0xAE, 0xAA};
+static const u1_t PROGMEM DEVEUI[8] = {FILLMEIN};
 void os_getDevEui(u1_t *buf) { memcpy_P(buf, DEVEUI, 8); }
 
 // This should also be in little endian format, see above.
-static const u1_t PROGMEM APPEUI[8] = {0x61, 0xAD, 0x19, 0x91, 0x81, 0x4B, 0xC7, 0x05};
+static const u1_t PROGMEM APPEUI[8] = {FILLMEIN};
 void os_getArtEui(u1_t *buf) { memcpy_P(buf, APPEUI, 8); }
 
 // This key should be in big endian format (or, since it is not really a
 // number but a block of memory, endianness does not really apply). In
 // practice, a key taken from the Helium Console can be copied as-is.
-static const u1_t PROGMEM APPKEY[16] = {0xFB, 0x44, 0x7F, 0xDD, 0x22, 0xEC, 0x0F, 0xEA, 0x4A, 0x06, 0xE7, 0xE9, 0xAB, 0x04, 0xC7, 0xB6};
+static const u1_t PROGMEM APPKEY[16] = {FILLMEIN};
 void os_getDevKey(u1_t *buf) { memcpy_P(buf, APPKEY, 16); }
 
 // Pin mapping
