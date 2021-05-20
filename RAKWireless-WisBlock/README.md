@@ -9,6 +9,12 @@ have multiple combinations of expansion boards added to it. The full WisBlock of
 Here you will find one or more sample PlatformIO embedded projects designed to transmit LoRaWAN packets using a [WisBlock Starter Kit](https://store.rakwireless.com/products/wisblock-starter-kit).
 
 ## Getting Started
+```
+Library update notice:
+Recent API changes to the runtime support library, SX126x-Arduino, have resulted in library version
+incompatibilty between version 1.3x and version 2.x. 
+Refer to the README file within the example subdirectory for details.
+```
 For a complete guide to getting started with PlatformIO and the RAKWireless WisBlock line of developer boards refer to the Helium documentation set at https://docs.helium.com/use-the-network/devices/development/rak-wisblock-starter.
 
 NOTE: The WisBlock is not currently supported by PlatformIO out of the box. One must follow the guide referenced above when installing VSCode/PlatformIO for WisBlock.
