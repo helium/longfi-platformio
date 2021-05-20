@@ -88,13 +88,17 @@ void setup()
      delay(5000);
 	// Initialize Serial for debug output
 	Serial.begin(115200);
-	while (!Serial)
-	{
-		delay(10);
-	}
+	// this next will cause the app to pause until
+	// you connect the virtual terminal to the comm port
+	// while (!Serial)
+	// {
+	// 	delay(10);
+	// }
 	Serial.println("=====================================");
 	Serial.println("Welcome to RAK4630 LoRaWan!!!");
 	Serial.println("Type: OTAA");
+
+#ifdef SX126x_Arduino_Ver1
 
 #if defined(REGION_AS923)
 	Serial.println("Region: AS923");
@@ -121,6 +125,11 @@ void setup()
 #endif
 	Serial.println("=====================================");
 
+	Serial.println("Built against SX126x-Arduino version 1.x");
+#else
+	Serial.println("Built against SX126x-Arduino version 2.x");
+#endif  // SX126x_Arduino_Ver1
+
 	//creat a user timer to send data to server period
 	uint32_t err_code;
 	err_code = timers_init();
@@ -135,7 +144,13 @@ void setup()
 	lmh_setAppKey(nodeAppKey);
 
 	// Initialize LoRaWan
+#ifdef SX126x_Arduino_Ver1
+	// SX126x-Arduino version 1 API
 	err_code = lmh_init(&lora_callbacks, lora_param_init, doOTAA);
+#else
+	// SX126x-Arduino version 2.x API
+	err_code = lmh_init(&lora_callbacks, lora_param_init, doOTAA, CLASS_A, LORAMAC_REGION_US915);
+#endif
 	if (err_code != 0)
 	{
 		Serial.printf("lmh_init failed - %d\n", err_code);
@@ -150,7 +165,10 @@ void setup()
 void loop()
 {
 	// Handle Radio events
+#ifdef SX126x_Arduino_Ver1
+	// Not needed for SX126x-Arduino version 2.x
 	Radio.IrqProcess();
+#endif
 }
 
 /**@brief LoRa function for handling HasJoined event.
