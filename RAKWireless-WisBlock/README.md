@@ -15,7 +15,7 @@ Recent API changes to the runtime support library, SX126x-Arduino, have resulted
 incompatibilty between version 1.3x and version 2.x. 
 Refer to the README file within the example subdirectory for details.
 ```
-For a complete guide to getting started with PlatformIO and the RAKWireless WisBlock line of developer boards refer to the Helium documentation set at https://docs.helium.com/use-the-network/devices/development/rak-wisblock-starter.
+For a complete guide to getting started with PlatformIO and the RAKWireless WisBlock line of developer boards refer to the Helium documentation set at https://docs.helium.com/use-the-network/devices/development/rakwireless/wisblock-4631/
 
 NOTE: The WisBlock is not currently supported by PlatformIO out of the box. One must follow the guide referenced above when installing VSCode/PlatformIO for WisBlock.
 
