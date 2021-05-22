@@ -30,7 +30,7 @@ Based on the value of lib_deps, PlatformIO will download the appropriate library
 The device application's main.cpp file contains the following conditional compile directive with determines which version of API to call.
 ```
 #ifdef SX126x_Arduino_Ver1
-``
+```
 
 ### Hardware
 The only hardware required is:
