@@ -8,7 +8,7 @@ The Heltec Cubecell HTCC AB0x is Heltec's line of popular ASR605x(ARM® Cortex®
 Here you will find one or more sample PlatformIO embedded projects designed to transmit LoRaWAN packets using a [Heltec CubeCell Developer Board](https://heltec.org/project/htcc-ab01/).
 
 ## Getting Started
-For a complete guide to getting started with PlatformIO and the Heltec CubeCell AB0x line of developer boards refer to the Helium documentation set at https://docs.helium.com/use-the-network/devices/development/heltec-cubecell-htcc-ab01/.
+For a complete guide to getting started with PlatformIO and the Heltec CubeCell AB0x line of developer boards refer to the Helium documentation set at <https://docs.helium.com/network-iot/devices/development/heltec/cubecell-dev-board>.
 
 ## Resources
 [Product Page](https://heltec.org/proudct_center/lora/cubecell/)  
@@ -24,6 +24,6 @@ For a complete guide to getting started with PlatformIO and the Heltec CubeCell 
 
 * [VSCode \(IDE)](https://code.visualstudio.com/)
     * [PlatformIO \(VScode Extension)](https://platformio.org/)
-* [Helium Console](https://www.helium.com/console) 
+* [Helium Console](https://docs.helium.com/console)
 
 
